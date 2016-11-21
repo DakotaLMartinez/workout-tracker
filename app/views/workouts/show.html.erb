@@ -1,5 +1,11 @@
 <h1><%= @workout.name %></h1>
+<ul class="list">
+  <% @workout.exercises.each do |exercise| %> 
+    <li><%= link_to exercise.name, exercise_path(exercise) %></li>
+  <% end %>
+</ul>
 <div class="buttons">
   <%= link_to 'Edit', edit_workout_path(@workout), class: 'link bg-blue white pa3 db fl mr1' %>
   <%= button_to 'Delete', @workout, method: :delete, class: 'bg-red white pa3 db fl pointer bn' %>
 </div>
+<p class="author">by: <%= @workout.user.email  if @workout.user %></p>
