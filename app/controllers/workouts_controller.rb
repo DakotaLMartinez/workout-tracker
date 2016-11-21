@@ -27,8 +27,10 @@ class WorkoutsController < ApplicationController
     end 
     
     def update 
-      @workout.update(workout_params)
-      redirect_to workout_path(@workout)
+      if is_my_workout?
+        @workout.update(workout_params.merge(user: current_user))
+        redirect_to workout_path(@workout)  
+      end
     end
     
     def destroy 
@@ -44,6 +46,10 @@ class WorkoutsController < ApplicationController
         flash[:error] = "Workout not found."
         redirect_to workouts_path
       end
+    end
+
+    def is_my_workout?
+      current_user.workouts.find_by(id: params[:id])
     end
     
     def workout_params 
