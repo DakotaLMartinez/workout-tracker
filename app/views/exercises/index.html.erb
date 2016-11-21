@@ -1,0 +1,6 @@
+<h1>Exercises</h1>
+<ul class="list pl1">
+  <% @exercises.each do |exercise| %>
+    <li class="mv3"><%= link_to exercise.name, exercise_path(exercise), class: 'no-underline' %></li>
+  <% end %>
+</ul>
