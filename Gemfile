@@ -45,6 +45,8 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'pry-awesome_print'
+  gem 'pry-rails'
 end
 
 group :development do
