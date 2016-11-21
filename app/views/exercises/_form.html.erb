@@ -1,0 +1,7 @@
+<%= form_for @exercise do |f| %>
+  <p><%= f.label :name %></p>
+  <p><%= f.text_field :name, class: 'w-100' %></p>
+  <p><%= f.label :description %></p>
+  <p><%= f.text_area :description, class: 'w-100 h4 ' %></p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
