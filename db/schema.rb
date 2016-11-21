@@ -39,9 +39,11 @@ ActiveRecord::Schema.define(version: 20161121201416) do
   create_table "workout_exercises", force: :cascade do |t|
     t.integer  "workout_id"
     t.integer  "exercise_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["exercise_id"], name: "index_workout_exercises_on_exercise_id"
+    t.index ["user_id"], name: "index_workout_exercises_on_user_id"
     t.index ["workout_id"], name: "index_workout_exercises_on_workout_id"
   end
 
