@@ -1,4 +1,4 @@
-<h1>Workouts</h1>
+<h1>Workouts <%= link_to '+New', new_workout_path, class: 'bg-blue white no-underline br4 pa2' %></h1>
 <ul>
   <% @workouts.each do |workout| %> 
     <li><%= link_to workout.name, workout_path(workout.id) %></li>
