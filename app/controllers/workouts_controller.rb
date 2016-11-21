@@ -38,7 +38,7 @@ class WorkoutsController < ApplicationController
     private 
     
     def set_workout
-      @workout = @Workout.find_by(id: params[:id])
+      @workout = Workout.find_by(id: params[:id])
       if @workout.nil?
         flash[:error] = "Workout not found."
         redirect_to workouts_path
