@@ -1,6 +1,6 @@
-<h1>Workouts <%= link_to '+New', new_workout_path, class: 'bg-blue white no-underline br4 pa2' %></h1>
-<ul>
+<h1>Workouts <%= link_to '+New', new_workout_path, class: 'bg-blue white no-underline br4 pa2 f5 relative', style: 'top: -8px' %></h1>
+<ul class="list pl2">
   <% @workouts.each do |workout| %> 
-    <li><%= link_to workout.name, workout_path(workout.id) %></li>
+    <li class="mv4 f3"><%= link_to workout.name, workout_path(workout.id), class: 'no-underline' %></li>
   <% end %>
 </ul>
