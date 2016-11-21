@@ -30,8 +30,12 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'pundit'
 
-gem 'rspec-rails'
-gem 'database_cleaner'
+group :test do 
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'database_cleaner'
+end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
