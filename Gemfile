@@ -31,6 +31,7 @@ gem 'devise'
 gem 'pundit'
 
 gem 'rspec-rails'
+gem 'database_cleaner'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
