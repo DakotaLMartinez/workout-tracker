@@ -2,8 +2,13 @@ require 'rails_helper'
 
 describe Workout do 
   before do 
-    @user = FactoryGirl.build(:user)
-    @workout = @user.workouts.build(name: "Bench Press")
+    @user = FactoryGirl.create(:user)
+    @workout = @user.workouts.create(name: "Push")
+    @bench_press = Exercise.create(name: "Bench Press")
+    @military_press = Exercise.create(name: "Military Press")
+    WorkoutExercise.create(user: @user, workout: @workout, exercise: @bench_press)
+    WorkoutExercise.create(user: @user, workout: @workout, exercise: @military_press)
+    @user.save!
   end
 
   it "belongs to a user" do 
@@ -11,7 +16,12 @@ describe Workout do
   end
 
   it "has a name" do 
-    expect(@workout.name).to eq("Bench Press")
+    expect(@workout.name).to eq("Push")
+  end
+
+  it "has many exercises" do 
+    expect(@workout.exercises).to include(@bench_press)
+    expect(@workout.exercises).to include(@military_press)
   end
 
 end 
