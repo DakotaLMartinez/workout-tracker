@@ -4,7 +4,7 @@
     <li><%= link_to exercise.name, exercise_path(exercise) %></li>
   <% end %>
 </ul>
-<div class="buttons">
+<div class="buttons cf">
   <%= link_to 'Edit', edit_workout_path(@workout), class: 'link bg-blue white pa3 db fl mr1' %>
   <%= button_to 'Delete', @workout, method: :delete, class: 'bg-red white pa3 db fl pointer bn' %>
 </div>
