@@ -90,7 +90,7 @@ class ExercisesController < ApplicationController
   end
   
   def is_my_exercise?
-    current_user.exercises.find_by(id: params[:id])
+    @exercise.user == current_user
   end
   
   def exercise_params 
