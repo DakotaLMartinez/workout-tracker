@@ -23,8 +23,9 @@ class ExercisesController < ApplicationController
   end
   
   def create 
-    @exercise = current_user.exercises.build(exercise_params)
-    if @exercise.valid? 
+    @exercise = Exercise.new(exercise_params.merge(user: current_user))
+    # @exercise = current_user.add_exercise
+    if current_user.add_exercise(@exercise) 
       @exercise.save 
       respond_to do |format|
         format.html { redirect_to exercises_path }
