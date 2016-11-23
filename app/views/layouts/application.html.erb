@@ -10,6 +10,12 @@
 
   <body>
     <%= render 'layouts/navbar' %>
+    <% if current_user %>
+      <div class="ph4-ns ph3">
+        Admin: <strong><%= current_user.admin? %></strong><br/>
+        <%= link_to 'Toggle admin rights', toggle_admin_path(current_user), method: :patch %>
+      </div>
+    <% end %>
     <div class="ph4-ns ph3">
       <p class="notice"><%= flash[:notice] %></p>
       <p class="alert"><%= flash[:alert] %></p>
