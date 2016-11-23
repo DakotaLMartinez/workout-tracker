@@ -28,3 +28,7 @@ en:
       edit?: "You cannot edit other user's workouts"
       update?: "You cannot update other user's workouts"
       destroy?: 'You cannot delete this workout!'
+    exercise_policy: 
+      edit?: "You cannot edit other user's exercises"
+      update?: "You cannot update other user's exercises"
+      destroy?: "You cannot delete this exercise"
