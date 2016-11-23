@@ -14,6 +14,10 @@ class ExerciseSetsController < ApplicationController
   
   def new 
     @exercise_set = @exercise.exercise_sets.build
+    respond_to do |format| 
+      format.html {  }
+      format.js { }
+    end
   end
   
   def create

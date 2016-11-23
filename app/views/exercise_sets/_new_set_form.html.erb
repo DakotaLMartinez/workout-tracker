@@ -1,0 +1,5 @@
+<%= form_for @exercise_set, url: { action: 'create' }, remote: true do |f| %>
+  <p><%= f.label :quantity %>: <%= f.text_field :quantity %></p>
+  <p><%= f.label :weight %>: <%= f.text_field :weight %></p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>
