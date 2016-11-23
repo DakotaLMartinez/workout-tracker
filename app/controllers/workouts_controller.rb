@@ -1,10 +1,12 @@
 class WorkoutsController < ApplicationController
-  before_action :authenticate_user!, only: [:index, :new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_workout, only: [:show, :edit, :update, :destroy]
   
   def index 
     # @workouts = Workout.all
-    @workouts = current_user.workouts
+    @workouts = []
+    @workouts = policy_scope(Workout) if current_user
     respond_to do |format|
       format.html 
       format.json { render json: @workouts}
@@ -42,40 +44,18 @@ class WorkoutsController < ApplicationController
   end 
   
   def update 
-    if is_my_workout?
-      @workout.update(workout_params.merge(user: current_user))
-      respond_to do |format|
-        format.html { redirect_to workout_path(@workout) }
-        format.json { render json: @workout.errors, status: :unprocessable_entity }
-      end
-    else 
-      @workout.errors.add(:user, "can't edit other user's workouts.")
-      respond_to do |format|
-        format.html {
-          flash.alert = "cannot edit other user's workouts" 
-          render :edit 
-        }
-        format.json { render json: @workout.errors, status: :unauthorized}
-      end
+    @workout.update(workout_params.merge(user: current_user))
+    respond_to do |format|
+      format.html { redirect_to workout_path(@workout) }
+      format.json { render json: @workout }
     end
   end
   
   def destroy 
-    if is_my_workout?
-      @workout.destroy
-      respond_to do |format| 
-        format.html { redirect_to workouts_path }
-        format.json { render json: @workout }
-      end
-    else 
-      @workout.errors.add(:unauthorized, "- cannot delete other user's workouts")
-      respond_to do |format|
-        format.html { 
-          flash.alert = "cannot delete other user's workouts" 
-          render :show  
-        }
-        format.json { render json: @workout.errors, status: :unprocessable_entity }
-      end
+    @workout.destroy
+    respond_to do |format| 
+      format.html { redirect_to workouts_path, notice: 'Workout successfully deleted' }
+      format.json { render json: @workout }
     end
   end
   
@@ -89,8 +69,8 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  def is_my_workout?
-    current_user.workouts.find_by(id: params[:id])
+  def authorize_workout 
+    authorize @workout
   end
   
   def workout_params 
