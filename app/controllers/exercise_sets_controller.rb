@@ -21,7 +21,7 @@ class ExerciseSetsController < ApplicationController
     if @exercise_set.valid? 
       @exercise_set.save 
       respond_to do |format|
-        format.html { redirect_to exercise_sets_path }
+        format.html { redirect_to exercise_path(@exercise) }
         format.json { render json: @exercise_set, status: created, location: @exercise_set }
       end
     else 
@@ -38,7 +38,7 @@ class ExerciseSetsController < ApplicationController
   def update 
     @exercise_set.update(exercise_set_params.merge(user: current_user))
     respond_to do |format|
-      format.html { redirect_to exercise_set_path(@exercise_set) }
+      format.html { redirect_to exercise_path(@exercise) }
       format.json { render json: @exercise_set.errors, status: :unprocessable_entity }
     end
   end
@@ -46,7 +46,7 @@ class ExerciseSetsController < ApplicationController
   def destroy 
     @exercise_set.destroy
     respond_to do |format| 
-      format.html { redirect_to exercise_sets_path }
+      format.html { redirect_to exercise_path(@exercise) }
       format.json { render json: @exercise_set }
     end
   end
@@ -64,8 +64,8 @@ class ExerciseSetsController < ApplicationController
   def set_exercise_set
     @exercise_set = ExerciseSet.find_by(id: params[:id])
     if @exercise_set.nil?
-      flash[:error] = "ExerciseSet not found."
-      redirect_to exercise_sets_path
+      flash[:error] = "Set not found."
+      redirect_to exercise_path(@exercise)
     end
   end
   
