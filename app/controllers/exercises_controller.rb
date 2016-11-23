@@ -1,6 +1,7 @@
 class ExercisesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_exercise, only: [:edit, :update, :destroy]
   
   def index 
     @exercises = Exercise.all
@@ -42,40 +43,20 @@ class ExercisesController < ApplicationController
   end 
   
   def update 
-    if is_my_exercise?
-      @exercise.update(exercise_params.merge(user: current_user))
-      respond_to do |format|
-        format.html { redirect_to exercise_path(@exercise) }
-        format.json { render json: @exercise.errors, status: :unprocessable_entity }
-      end
-    else 
-      @exercise.errors.add(:user, "can't edit other user's exercises.")
-      respond_to do |format|
-        format.html { 
-          flash.alert = "can't edit other user's exercises"  
-          render :edit 
-        }
-        format.json { render json: @exercise.errors, status: :unauthorized }
-      end
+    @exercise.update(exercise_params.merge(user: current_user))
+    respond_to do |format|
+      format.html { redirect_to exercise_path(@exercise) }
+      format.json { render json: @exercise.errors, status: :unprocessable_entity }
     end
+    
   end
   
   def destroy 
-    if is_my_exercise?
-      @exercise.destroy
-      respond_to do |format| 
-        format.html { redirect_to exercises_path }
-        format.json { render json: @exercise }
-      end
-    else 
-      @exercise.errors['unauthorized'] = ["- cannot delete other user's exercises"]
-      respond_to do |format|
-        format.html {
-          flash.alert = "can't delete other user's exercises"
-          render :show 
-        }
-        format.json { render json: @exercise.errors, status: :unprocessable_entity }
-      end
+    
+    @exercise.destroy
+    respond_to do |format| 
+      format.html { redirect_to exercises_path }
+      format.json { render json: @exercise }
     end
   end
   
@@ -87,6 +68,10 @@ class ExercisesController < ApplicationController
       flash[:error] = "Exercise not found."
       redirect_to exercises_path
     end
+  end
+
+  def authorize_exercise 
+    authorize @exercise
   end
   
   def is_my_exercise?
