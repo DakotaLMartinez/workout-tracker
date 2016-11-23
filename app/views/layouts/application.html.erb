@@ -17,9 +17,13 @@
         <%= link_to 'Toggle admin rights', toggle_admin_path(current_user), method: :patch %>
       </div>
     <% end %>
+    <% if flash[:notice] %>
+      <p class="notice bg-lightblue pa3 ph4-ns"><%= flash[:notice] %></p>  
+    <% end %>
+    <% if flash[:alert] || flash[:error] %>
+      <p class="alert bg-red pa3 ph4-ns"><%= flash[:alert] || flash[:error] %></p>
+    <% end %>
     <div class="ph4-ns ph3">
-      <p class="notice"><%= flash[:notice] %></p>
-      <p class="alert"><%= flash[:alert] %></p>
       <%= yield %>    
     </div>
     
