@@ -13,6 +13,7 @@ class ExercisesController < ApplicationController
   end
   
   def show
+    @sets = current_user.exercise_sets.where(exercise: @exercise)
     respond_to do |format|
       format.html 
       format.json { render json: @exercise }
