@@ -8,4 +8,12 @@ class User < ApplicationRecord
   has_many :workout_exercises
   has_many :user_exercises
   has_many :exercises, through: :user_exercises
+
+  def add_exercise(exercise)
+    if !UserExercise.exists?(user: self, exercise: exercise)
+      exercise.save 
+      UserExercise.create(user: self, exercise: exercise)
+      self.save
+    end
+  end
 end
