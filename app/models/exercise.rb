@@ -4,4 +4,5 @@ class Exercise < ApplicationRecord
   belongs_to :user
   has_many :user_exercises
   has_many :users, through: :user_exercises
+  has_many :exercise_sets
 end

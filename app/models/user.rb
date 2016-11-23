@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :workout_exercises
   has_many :user_exercises
   has_many :exercises, through: :user_exercises
+  has_many :exercise_sets, through: :exercises
 
   def add_exercise(exercise)
     if !UserExercise.exists?(user: self, exercise: exercise)
