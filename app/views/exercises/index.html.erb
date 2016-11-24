@@ -1,6 +1,6 @@
 <h1>Exercises <%= link_to '+New', new_exercise_path, class: 'bg-blue white no-underline br4 pa2 f5 relative', style: 'top: -8px' %></h1>
 <ul class="list pl1">
-  <% @exercises.each do |exercise| %>
+  <% exercises.each do |exercise| %>
     <li class="mv3"><%= link_to exercise.name, exercise_path(exercise), class: 'no-underline' %></li>
   <% end %>
 </ul>

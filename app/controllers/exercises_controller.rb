@@ -7,7 +7,7 @@ class ExercisesController < ApplicationController
     @exercises = Exercise.all
     # @exercises = current_user.exercises
     respond_to do |format|
-      format.html 
+      format.html { render 'index', locals: { exercises: @exercises } }
       format.json { render json: @exercises }
     end
   end
