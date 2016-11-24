@@ -5,7 +5,7 @@ class ExerciseSetsController < ApplicationController
   before_action :authorize_set, only: [:edit, :update, :destroy]
 
   def index 
-    @exercise_sets = @exercise.exercise_sets.where(user: current_user)
+    @sets = @exercise.exercise_sets.where(user: current_user)
     respond_to do |format|
       format.html 
       format.json { render json: @exercise_sets}
