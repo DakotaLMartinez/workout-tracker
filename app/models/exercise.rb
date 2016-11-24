@@ -5,4 +5,14 @@ class Exercise < ApplicationRecord
   has_many :user_exercises
   has_many :users, through: :user_exercises
   has_many :exercise_sets
+
+  def add_to_workout(workout, user)
+    we = WorkoutExercise.new(workout: workout, user: user, exercise: self)
+    if we.valid?
+      we.save 
+      workout.save
+      user.save
+      self.save
+    end
+  end
 end
