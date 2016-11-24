@@ -5,7 +5,7 @@ class ExerciseSetsController < ApplicationController
   before_action :authorize_set, only: [:edit, :update, :destroy]
 
   def index 
-    @sets = @exercise.exercise_sets.where(user: current_user)
+    @sets = @exercise.exercise_sets.where(user: current_user).order(created_at: 'desc')
     respond_to do |format|
       format.html 
       format.json { render json: @exercise_sets}
@@ -71,6 +71,10 @@ class ExerciseSetsController < ApplicationController
       flash[:error] = "Set not found."
       redirect_to exercise_path(@exercise)
     end
+  end
+
+  def authorize_set 
+    authorize @exercise_set
   end
   
   def exercise_set_params 

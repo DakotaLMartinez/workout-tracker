@@ -13,7 +13,7 @@ class ExercisesController < ApplicationController
   end
   
   def show
-    @sets = current_user.exercise_sets.where(exercise: @exercise)
+    @sets = current_user.exercise_sets.where(exercise: @exercise).order(created_at: 'desc').limit(5)
     respond_to do |format|
       format.html 
       format.json { render json: @exercise }
