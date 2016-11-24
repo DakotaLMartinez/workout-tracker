@@ -21,6 +21,7 @@ class ExercisesController < ApplicationController
   end
   
   def new 
+    @workouts = current_user.workouts
     @exercise = current_user.exercises.build
   end
   
@@ -28,6 +29,10 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.new(exercise_params.merge(user: current_user))
     if current_user.add_exercise(@exercise) 
       @exercise.save 
+      workout = Workout.find_by_name(params[:workout_name], current_user)
+      if workout 
+        @exercise.add_to_workout(workout, current_user)
+      end
       respond_to do |format|
         format.html { redirect_to exercises_path }
         format.json { render json: @exercise, status: created, location: @exercise }
