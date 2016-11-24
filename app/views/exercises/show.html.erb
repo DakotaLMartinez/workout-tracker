@@ -1,8 +1,9 @@
-<h1><%= @exercise.name %></h1>
+<h1 class="mb1"><%= @exercise.name %></h1>
+<div class="buttons cf">
+  <%= link_to 'Edit', edit_exercise_path(@exercise), class: 'link bg-blue white pa3 db fl mr1' if policy(@exercise).update? %>
+  <%= button_to 'Delete', @exercise, method: :delete, class: 'bg-red white pa3 db fl pointer bn' if policy(@exercise).destroy? %>
+</div>
 <p><%= @exercise.description %></p>
 <p class="author">by: <%= @exercise.user.email if @exercise.user %></p>
-<div class="buttons cf">
-  <%= link_to 'Edit', edit_exercise_path(@exercise), class: 'link bg-blue white pa3 db fl mr1' %>
-  <%= button_to 'Delete', @exercise, method: :delete, class: 'bg-red white pa3 db fl pointer bn' %>
-</div>
+
 <%= render template: 'exercise_sets/index', locals: { sets: @sets, exercise: @exercise }  %>
