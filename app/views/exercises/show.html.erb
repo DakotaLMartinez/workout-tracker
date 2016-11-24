@@ -5,26 +5,4 @@
   <%= link_to 'Edit', edit_exercise_path(@exercise), class: 'link bg-blue white pa3 db fl mr1' %>
   <%= button_to 'Delete', @exercise, method: :delete, class: 'bg-red white pa3 db fl pointer bn' %>
 </div>
-<h2>Sets</h2>
-<ul class="list pl0">
-  <li>
-    <div class="w-30 b dib">Reps</div>
-    <div class="w-30 b dib">Weight</div>
-    <div class="w-30 b dib">Date</div>
-  </li>
-  <% @sets.each do |set| %>
-    <li>
-      <div class="w-30 dib"><%= set.quantity %></div>
-      <div class="w-30 dib"><%= set.weight %></div>
-      <div class="w-30 dib"><%= set.created_at.strftime('%m-%d-%Y') %></div>
-    </li>
-  <% end %>
-  <li id="add-set" class="mt3 cf">
-    <div class="fl">
-      <%= link_to 'Add Set', new_exercise_exercise_set_path(@exercise), remote:true %>
-    </div>
-    <div class="fr">
-      <%= link_to 'Show All Sets', exercise_exercise_sets_path(@exercise) %>
-    </div>
-  </li>
-</ul>
+<%= render template: 'exercise_sets/index', locals: { sets: @sets, exercise: @exercise }  %>

@@ -7,8 +7,8 @@ class ExerciseSetsController < ApplicationController
   def index 
     @sets = @exercise.exercise_sets.where(user: current_user).order(created_at: 'desc')
     respond_to do |format|
-      format.html 
-      format.json { render json: @exercise_sets}
+      format.html { render 'index', locals: { sets: @sets, exercise: @exercise } }
+      format.json { render json: @sets}
     end
   end
   
