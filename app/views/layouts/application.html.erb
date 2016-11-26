@@ -2,13 +2,14 @@
 <html>
   <head>
     <title>WorkoutTracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="f3 f4-ns">
     <%= render 'layouts/navbar' %>
     <% if current_user %>
       <div class="ph4-ns ph3">

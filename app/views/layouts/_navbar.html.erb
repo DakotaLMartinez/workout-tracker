@@ -1,11 +1,11 @@
-<section class="nav bg-lightest-blue mv0 ph4-ns ph3">
-  <ul class="list pl0 mv0 pv0 tc tl-ns f3 f2-l">
-    <li class="b dib pv3 w-40 w-auto-ns"><%= link_to 'Workouts', workouts_path, class: 'no-underline pv3 pr3-ns w-100 w-auto-ns black' %></li>
-    <li class="b dib pv3 w-40 w-auto-ns"><%= link_to 'Exercises', exercises_path, class: 'no-underline pv3 pr3-ns w-100 w-auto-ns black' %></li>
+<section class="nav bg-lightest-blue mv0 ph4-ns ph0 w-100">
+  <ul class="list pl0 ma0 pv0 tc tl-ns f4 f3-ns w-100 cf">
+    <li class="b dib pv4 pv3-ns ph0 w-30 w-auto-ns"><%= link_to 'Workouts', workouts_path, class: 'no-underline pv3 pr3-ns w-100 w-auto-ns black' %></li>
+    <li class="b dib pv4 pv3-ns ph0 w-30 w-auto-ns"><%= link_to 'Exercises', exercises_path, class: 'no-underline pv3 pr3-ns w-100 w-auto-ns black' %></li>
     <% if user_signed_in? %>
-      <li class="b dib pv3 w-20 w-auto-ns fr"><%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'no-underline pv3 pr3-ns w-100 w-auto-ns black' %></li>
+      <li class="b dib pv4 pv3-ns w-30 w-auto-ns fr"><%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: 'no-underline pv3 pr3-ns w-100 w-auto-ns black' %></li>
     <% else %>
-      <li class="b dib pv3 w-20 w-auto-ns fr"><%= link_to 'Sign In', new_user_session_path, class: 'no-underline pv3 pr3-ns w-100 w-auto-ns black' %></li>  
+      <li class="b dib pv4 pv3-ns w-30 w-auto-ns fr"><%= link_to 'Sign In', new_user_session_path, class: 'no-underline pv3 pr3-ns w-100 w-auto-ns black' %></li>  
     <% end %>
   </ul>
 </section>
