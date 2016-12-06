@@ -15,6 +15,7 @@
         <div class="w-20 dib"><%= set.weight %></div>
         <div class="w-25 dib"><%= set.created_at.strftime('%m-%d-%Y') %></div>
         <div class="dib"><%= link_to 'Edit', edit_exercise_exercise_set_path(exercise, set), remote: true %></div>
+        <div class="dib"><%= link_to 'Delete', exercise_exercise_set_path(exercise, set), method: :delete, class: 'red' %></div>
       </li>
     <% end %>
     <li id="add-set" class="mt3 cf">
