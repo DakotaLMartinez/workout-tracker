@@ -11,13 +11,6 @@
 
   <body class="f3 f4-ns">
     <%= render 'layouts/navbar' %>
-    <% if current_user %>
-      <div class="ph4-ns ph3">
-        Admin: <strong><%= current_user.admin? %></strong><br/>
-        current_user: <%= current_user.email %><br/>
-        <%= link_to 'Toggle admin rights', toggle_admin_path(current_user), method: :patch %>
-      </div>
-    <% end %>
     <% if flash[:notice] %>
       <p class="notice bg-lightblue pa3 ph4-ns"><%= flash[:notice] %></p>  
     <% end %>
