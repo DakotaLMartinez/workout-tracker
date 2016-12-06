@@ -1,9 +1,8 @@
 <%= form_for @exercise do |f| %>
   <p><%= f.label :name %></p>
-  <p><%= f.text_field :name, class: 'w-100' %></p>
+  <p><%= f.text_field :name, class: 'w-100 ba b--black' %></p>
   <p><%= f.label :description %></p>
-  <p><%= f.text_area :description, class: 'w-100 h4 ' %></p>
-  <p><%= f.label :workout_name %></p>
-  <p><%= select_tag :workout_name, options_from_collection_for_select(@workouts, :name, :name), include_blank: 'add to workout...' %></p>
-  <p><%= f.submit "Submit" %></p>
+  <p><%= f.text_area :description, class: 'w-100 h4 ba b--black' %></p>
+  <p><%= select_tag :workout_id, options_from_collection_for_select(@workouts, :id, :name), include_blank: 'add to workout...', class: 'w-100 ba b--black' %></p>
+  <p><%= f.submit "Submit", class: 'bg-green pa3 white' %></p>
 <% end %>

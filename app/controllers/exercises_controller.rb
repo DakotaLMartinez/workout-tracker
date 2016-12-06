@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :load_workouts, only: [:new, :edit]
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
   before_action :authorize_exercise, only: [:edit, :update, :destroy]
   
@@ -21,7 +22,6 @@ class ExercisesController < ApplicationController
   end
   
   def new 
-    @workouts = current_user.workouts
     @exercise = current_user.exercises.build
   end
   
@@ -82,6 +82,10 @@ class ExercisesController < ApplicationController
   
   def is_my_exercise?
     @exercise.user == current_user
+  end
+
+  def load_workouts 
+    @workouts = current_user.workouts if current_user
   end
   
   def exercise_params 
