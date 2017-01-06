@@ -20,8 +20,7 @@ class User < ApplicationRecord
 
   def recent_exercises
     @recent_exercises ||= exercise_sets.select{ |es| es.created_at > Time.zone.now() - 3.hours }.map{ |es| es.exercise}.uniq[0..3]
-    puts @recent_exercises
-    @recent_exercises
+    # @recent_exercises ||= exercise_sets.order(created_at: :asc).only(:order).from(exercise_sets.reverse_order.limit(6), 'exercise_sets').map{|es| es.exercise}.uniq
   end
 
   def add_to_recent_exercises(exercise)
