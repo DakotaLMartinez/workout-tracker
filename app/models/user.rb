@@ -26,4 +26,8 @@ class User < ApplicationRecord
   def add_to_recent_exercises(exercise)
     @recent_exercises = recent_exercises.unshift(exercise) if !recent_exercises.include?(exercise)
   end
+
+  def recent_sets_count(exercise)
+    exercise.recent_sets(self).length
+  end
 end

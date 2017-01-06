@@ -15,4 +15,8 @@ class Exercise < ApplicationRecord
       self.save
     end
   end
+
+  def recent_sets(user)
+    @recent_sets ||= exercise_sets.where(user: user, created_at: (Time.zone.now - 3.hours)..Time.zone.now)
+  end
 end
