@@ -1,4 +1,5 @@
-$(document).on('click', '#show-details', function(){
+$(document).on('click', '#show-details', function(e){
+  e.preventDefault();
   var text = $('#show-details').text();
   if(text === 'Show Details') {
     $('.details').toggleClass('dn');
