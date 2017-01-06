@@ -7,8 +7,11 @@ class ApplicationController < ActionController::Base
   private 
 
   def user_not_authorized(exception) 
-    policy_name = exception.policy.class.to_s.underscore
-    message = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+    message = "You are not authorized to perform that action"
+    if exception.respond_to?(:policy)
+      policy_name = exception.policy.class.to_s.underscore 
+      message = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+    end
     flash[:alert] = message
     respond_to do |format| 
       format.html { redirect_to(request.referrer || root_path) }
