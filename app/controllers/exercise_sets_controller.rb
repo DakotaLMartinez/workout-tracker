@@ -26,6 +26,7 @@ class ExerciseSetsController < ApplicationController
       @exercise_set.save 
       respond_to do |format|
         format.html { redirect_to exercise_path(@exercise) }
+        format.js {}
         format.json { render json: @exercise_set, status: created, location: @exercise_set }
       end
     else 

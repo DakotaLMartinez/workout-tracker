@@ -10,13 +10,7 @@
       <div class="w-25 b dib">Date</div>
     </li>
     <% sets.each do |set| %>
-      <li id="set-<%= set.id %>" class="pv2">
-        <div class="w-20 dib"><%= set.quantity %></div>
-        <div class="w-20 dib"><%= set.weight %></div>
-        <div class="w-25 dib"><%= set.created_at.strftime('%m-%d-%Y') %></div>
-        <div class="dib"><%= link_to 'Edit', edit_exercise_set_path(exercise, set), remote: true %></div>
-        <div class="dib"><%= link_to 'Delete', exercise_set_path(exercise, set), method: :delete, class: 'red' %></div>
-      </li>
+      <%= render partial: 'exercise_sets/set_row', locals: {set: set, exercise: exercise} %>
     <% end %>
     <li id="add-set" class="mt3 cf">
       <div class="fl">
