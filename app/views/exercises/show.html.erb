@@ -4,7 +4,7 @@
   <%= button_to 'Delete', @exercise, method: :delete, class: 'bg-red white pa3 db fl pointer bn' if policy(@exercise).destroy? %>
 </div>
 <div class="mt3">
-  <a class="bg-green white pa2 pointer" id="show-details">Show Details</a>
+  <a class="bg-green white pa2 pointer" id="show-details" href="">Show Details</a>
 </div>
 <div class="details dn">
   <p><%= @exercise.description %></p>
