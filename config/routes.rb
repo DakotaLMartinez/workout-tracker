@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :workouts 
 
   resources :exercises do 
-    resources :exercise_sets
+    resources :exercise_sets, as: 'sets'
         resources :workout_exercises, only: [:create, :destroy]
   end
 
