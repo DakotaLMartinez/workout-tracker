@@ -17,4 +17,14 @@ class User < ApplicationRecord
       self.save
     end
   end
+
+  def recent_exercises
+    @recent_exercises ||= exercise_sets.select{ |es| es.created_at > Time.zone.now() - 3.hours }.map{ |es| es.exercise}.uniq[0..3]
+    puts @recent_exercises
+    @recent_exercises
+  end
+
+  def add_to_recent_exercises(exercise)
+    @recent_exercises = recent_exercises.unshift(exercise) if !recent_exercises.include?(exercise)
+  end
 end

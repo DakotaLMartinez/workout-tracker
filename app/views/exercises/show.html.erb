@@ -11,4 +11,15 @@
   <p class="author">by: <%= @exercise.user.email if @exercise.user %></p>
 </div>
 
-<%= render template: 'exercise_sets/index', locals: { sets: @sets, exercise: @exercise }  %>
+<% if current_user %>
+  <%= render template: 'exercise_sets/index', locals: { sets: @sets, exercise: @exercise }  %>
+<% end %>
+
+<% if @recent_exercises %>
+  <h3 class="pt4">Recent Exercises</h3>
+  <ul class="list pl0">
+    <% @recent_exercises.each do |e| %>
+      <li class="pv2"><%= link_to e.name, exercise_path(e), class: 'no-underline' %></li>
+    <% end %>
+  </ul>
+<% end %>
