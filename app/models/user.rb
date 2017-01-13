@@ -27,12 +27,18 @@ class User < ApplicationRecord
   end
 
   def recent_exercises
-    @recent_exercises ||= exercise_sets.select{ |es| es.created_at > Time.zone.now() - 3.hours }.map{ |es| es.exercise}.uniq[0..3]
+    @recent_exercises ||= exercise_sets.order(created_at: :desc)
+                                       .limit(30)
+                                       .select{ |set| set.created_at > Time.zone.now() - 3.hours }
+                                       .map{ |set| set.exercise}
+                                       .uniq[0..3]
     # @recent_exercises ||= exercise_sets.order(created_at: :asc).only(:order).from(exercise_sets.reverse_order.limit(6), 'exercise_sets').map{|es| es.exercise}.uniq
   end
 
   def add_to_recent_exercises(exercise)
-    @recent_exercises = recent_exercises.unshift(exercise) if !recent_exercises.include?(exercise)
+    unless recent_exercises.include?(exercise)
+      @recent_exercises = recent_exercises[0,-2].unshift(exercise) if recent_exercises[0,-2]
+    end
   end
 
   def recent_sets_count(exercise)
