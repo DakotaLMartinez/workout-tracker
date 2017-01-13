@@ -4,10 +4,11 @@ describe User do
   before do 
     @user = FactoryGirl.create(:user)
     @workout = @user.workouts.create(name: "Push")
-    @bench_press = Exercise.create(name: "Bench Press")
-    @military_press = Exercise.create(name: "Military Press")
-    WorkoutExercise.create(user: @user, workout: @workout, exercise: @bench_press)
-    WorkoutExercise.create(user: @user, workout: @workout, exercise: @military_press)
+    @bench_press = Exercise.create(name: "Bench Press", user: @user)
+    @military_press = Exercise.create(name: "Military Press", user: @user)
+    @user.add_exercise(@bench_press)
+    @user.add_exercise(@military_press)
+
     @user.save!
   end
 
@@ -16,6 +17,6 @@ describe User do
   end
 
   it "has many exercises through workout_excercises" do 
-    expect(@user.exercises).to include(@bench_press)
+    expect(@user.exercises).to include(@bench_press, @military_press)
   end
 end
