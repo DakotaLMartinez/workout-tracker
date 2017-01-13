@@ -10,6 +10,14 @@ class User < ApplicationRecord
   has_many :exercises, through: :user_exercises
   has_many :exercise_sets, through: :exercises
 
+  def last_sets_of_exercise(exercise, number)
+    exercise_sets.where(exercise: exercise).order(created_at: 'desc').limit(Integer(number))
+  end
+
+  def last_five_sets_of_exercise(exercise)
+    last_sets_of_exercise(exercise, 5)
+  end
+
   def add_exercise(exercise)
     if !UserExercise.exists?(user: self, exercise: exercise)
       exercise.save 

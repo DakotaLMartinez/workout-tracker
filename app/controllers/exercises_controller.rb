@@ -14,7 +14,7 @@ class ExercisesController < ApplicationController
   end
   
   def show
-    @sets = current_user.exercise_sets.where(exercise: @exercise).order(created_at: 'desc').limit(5) if current_user
+    @sets = current_user.last_five_sets_of_exercise(@exercise) if current_user
     @recent_exercises = current_user.recent_exercises.select{ |e| e != @exercise} if current_user
     respond_to do |format|
       format.html 
