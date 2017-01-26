@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :workout_exercises
   has_many :user_exercises
   has_many :exercises, through: :user_exercises
-  has_many :exercise_sets, through: :exercises
+  has_many :exercise_sets
 
   def last_sets_of_exercise(exercise, number)
     exercise_sets.where(exercise: exercise).order(created_at: 'desc').limit(Integer(number))
