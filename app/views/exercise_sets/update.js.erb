@@ -1,0 +1,2 @@
+$('#set-<%= @exercise_set.id %>').html("<%= escape_javascript render partial: 'exercise_sets/set_row', locals: {set: @exercise_set, exercise: @exercise} %>");
+$('#add-set').show();
