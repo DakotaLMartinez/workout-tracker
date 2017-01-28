@@ -1,7 +1,7 @@
 <li id="set-<%= set.id %>" class="pv2">
-  <div class="w-20 dib"><%= set.quantity %></div>
-  <div class="w-20 dib"><%= set.weight %></div>
-  <div class="w-25 dib"><%= set.created_at.strftime('%m-%d-%Y') %></div>
+  <div class="reps w-20 dib"><%= set.quantity %></div>
+  <div class="weight w-20 dib"><%= set.weight %></div>
+  <div class="date w-25 dib"><%= set.created_at.strftime('%m-%d-%Y') %></div>
   <div class="dib"><%= link_to 'Edit', edit_exercise_set_path(exercise, set), remote: true %></div>
   <div class="dib"><%= link_to 'Delete', exercise_set_path(exercise, set), method: :delete, class: 'red' %></div>
 </li>
