@@ -4,8 +4,8 @@ describe Workout do
   before do 
     @user = FactoryGirl.create(:user)
     @workout = @user.workouts.create(name: "Push")
-    @bench_press = Exercise.create(name: "Bench Press")
-    @military_press = Exercise.create(name: "Military Press")
+    @bench_press = @user.exercises.create(name: "Bench Press")
+    @military_press = @user.exercises.create(name: "Military Press")
     WorkoutExercise.create(user: @user, workout: @workout, exercise: @bench_press)
     WorkoutExercise.create(user: @user, workout: @workout, exercise: @military_press)
     @user.save!

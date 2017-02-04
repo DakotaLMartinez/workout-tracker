@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :workouts
   has_many :workout_exercises
   has_many :user_exercises
-  has_many :exercises, through: :user_exercises
+  has_many :exercises
   has_many :exercise_sets
 
   def last_sets_of_exercise(exercise, number)
