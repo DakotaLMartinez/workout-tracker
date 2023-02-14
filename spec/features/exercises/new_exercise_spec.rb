@@ -11,7 +11,6 @@ feature 'Creating New Exercises' do
     visit new_exercise_path
     fill_in 'exercise_name', with: 'My New Exercise'
     click_button 'Submit'
-
     expect(page).to have_text('My New Exercise')
   end
 

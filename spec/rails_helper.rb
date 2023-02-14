@@ -7,8 +7,19 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'pry'
 
-require 'capybara/poltergeist'
-Capybara.javascript_driver = :poltergeist 
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, browser: :chrome)
+end
+
+Capybara.register_driver :selenium do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(
+    args: %w[headless no-sandbox disable-gpu --window-size=1024,1024]
+  )
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
+end
+
+Capybara.default_driver = :chrome
+Capybara.javascript_driver = :selenium
 Capybara.raise_server_errors = false
 # Add additional requires below this line. Rails is not loaded until this point!
 
