@@ -18,7 +18,7 @@ Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
 
-Capybara.default_driver = :chrome
+Capybara.default_driver = :selenium
 Capybara.javascript_driver = :selenium
 Capybara.raise_server_errors = false
 # Add additional requires below this line. Rails is not loaded until this point!
