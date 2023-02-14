@@ -2,10 +2,10 @@ require 'rails_helper'
 
 feature 'New Exercise Set' do
   before(:each) do 
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     visit new_user_session_path 
     LoginPage.new.sign_in(@user.email, @user.password)
-    @exercise = FactoryGirl.create(:exercise)
+    @exercise = create(:exercise)
   end
 
   scenario 'can be seen by the user who created it', js: true do
@@ -29,7 +29,7 @@ feature 'New Exercise Set' do
     find('input[name="commit"]').click
 
     click_link 'Logout'
-    @other_user = FactoryGirl.create(:other_user)
+    @other_user = create(:other_user)
     visit new_user_session_path 
     fill_in 'user_email', with: @other_user.email
     fill_in 'user_password', with: @other_user.password

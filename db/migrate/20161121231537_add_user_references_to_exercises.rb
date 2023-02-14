@@ -1,4 +1,4 @@
-class AddUserReferencesToExercises < ActiveRecord::Migration[5.0]
+class AddUserReferencesToExercises < ActiveRecord::Migration[6.0]
   def change
     add_reference :exercises, :user, foreign_key: true
   end

@@ -1,4 +1,4 @@
-class CreateExerciseSets < ActiveRecord::Migration[5.0]
+class CreateExerciseSets < ActiveRecord::Migration[6.0]
   def change
     create_table :exercise_sets do |t|
       t.references :user, foreign_key: true, null: false

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Creating sets adds to Current User's recent exercises" do
   before(:each) do 
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     visit new_user_session_path 
     LoginPage.new.sign_in(@user.email, @user.password)
     @bench_press = Exercise.create(name: "Bench Press", user: @user)

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Authentication' do
   before do
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     visit new_user_session_path
     @login_page = LoginPage.new
   end

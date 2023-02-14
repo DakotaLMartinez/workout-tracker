@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Workout do 
   before do 
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     @workout = @user.workouts.create(name: "Push")
     @bench_press = @user.exercises.create(name: "Bench Press")
     @military_press = @user.exercises.create(name: "Military Press")

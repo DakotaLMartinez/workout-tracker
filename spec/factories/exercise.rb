@@ -1,4 +1,4 @@
-FactoryGirl.define do 
+FactoryBot.define do 
   factory :exercise do
     name { "Bench Press" }
     user { create :user }

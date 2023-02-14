@@ -1,10 +1,14 @@
+def next?
+  File.basename(__FILE__) == "Gemfile.next"
+end
 source 'https://rubygems.org'
 
+ruby "3.2.1"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0'
+gem 'rails', '~> 6'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
@@ -45,7 +49,7 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-awesome_print'
   gem 'pry-rails'
@@ -67,3 +71,5 @@ gem "next_rails", "~> 1.2"
 
 gem "bootsnap", "~> 1.16"
 
+
+gem "psych", "~> 5.1"
