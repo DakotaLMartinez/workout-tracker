@@ -1,0 +1,10 @@
+{
+  "name": "workout-tracker",
+  "description": "My awesome Rails app for tracking workouts!",
+  "keywords": ["dokku", "rails"],
+  "scripts": {
+    "dokku": {
+      "postdeploy": "bundle exec rails db:migrate"
+    }
+  }
+}
