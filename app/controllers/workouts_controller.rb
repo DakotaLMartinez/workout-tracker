@@ -44,7 +44,7 @@ class WorkoutsController < ApplicationController
   end 
   
   def update 
-    @workout.update(workout_params.merge(user: current_user))
+    @workout.update(workout_params)
     respond_to do |format|
       format.html { redirect_to workout_path(@workout) }
       format.json { render json: @workout }
@@ -62,7 +62,7 @@ class WorkoutsController < ApplicationController
   private 
   
   def set_workout
-    @workout = Workout.find_by(id: params[:id])
+    @workout = current_user.workouts.find_by(id: params[:id])
     if @workout.nil?
       flash[:error] = "Workout not found."
       redirect_to workouts_path
@@ -74,6 +74,6 @@ class WorkoutsController < ApplicationController
   end
   
   def workout_params 
-    params.require(:workout).permit(:name)
+    params.require(:workout).permit(:name, exercise_ids: [])
   end
 end

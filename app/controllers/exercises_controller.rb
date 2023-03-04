@@ -27,13 +27,8 @@ class ExercisesController < ApplicationController
   end
   
   def create 
-    @exercise = Exercise.new(exercise_params.merge(user: current_user))
-    if current_user.add_exercise(@exercise) 
-      @exercise.save 
-      workout = Workout.find_by_id_and_user(params[:workout_id], current_user)
-      if workout 
-        @exercise.add_to_workout(workout, current_user)
-      end
+    @exercise = current_user.exercises.build(exercise_params)
+    if @exercise.save 
       respond_to do |format|
         format.html { redirect_to exercises_path }
         format.json { render json: @exercise, status: created, location: @exercise }
@@ -90,6 +85,6 @@ class ExercisesController < ApplicationController
   end
   
   def exercise_params 
-    params.require(:exercise).permit(:name, :description)
+    params.require(:exercise).permit(:name, :description, workout_ids: [])
   end
 end

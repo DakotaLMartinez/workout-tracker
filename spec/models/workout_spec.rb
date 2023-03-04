@@ -6,8 +6,8 @@ describe Workout do
     @workout = @user.workouts.create(name: "Push")
     @bench_press = @user.exercises.create(name: "Bench Press")
     @military_press = @user.exercises.create(name: "Military Press")
-    WorkoutExercise.create(user: @user, workout: @workout, exercise: @bench_press)
-    WorkoutExercise.create(user: @user, workout: @workout, exercise: @military_press)
+    WorkoutExercise.create(workout: @workout, exercise: @bench_press)
+    WorkoutExercise.create(workout: @workout, exercise: @military_press)
     @user.save!
   end
 

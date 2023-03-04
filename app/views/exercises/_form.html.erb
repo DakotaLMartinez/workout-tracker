@@ -1,8 +1,15 @@
 <%= form_for @exercise do |f| %>
   <p><%= f.label :name %></p>
-  <p><%= f.text_field :name, class: 'w-100 ba b--black' %></p>
+  <p><%= f.text_field :name, class: 'w-100 ba pa3 b--black' %></p>
   <p><%= f.label :description %></p>
-  <p><%= f.text_area :description, class: 'w-100 h4 ba b--black' %></p>
-  <p><%= select_tag :workout_id, options_from_collection_for_select(@workouts, :id, :name), include_blank: 'add to workout...', class: 'w-100 ba b--black' %></p>
+  <p><%= f.text_area :description, class: 'w-100 h4 ba pa3 b--black' %></p>
+  <p class="flex">
+    <%= f.collection_check_boxes :workout_ids, current_user.workouts, :id, :name do |b| %>
+      <%= b.label class: "flex items-center pointer mr3 f3" do %>
+        <span class="h2"><%= b.check_box class: 'pa2 w2 h2 mr1' %></span>
+        <%= b.text %>
+      <% end %>
+    <% end %>
+  </p>
   <p><%= f.submit "Submit", class: 'bg-green pa3 white' %></p>
 <% end %>

@@ -7,7 +7,7 @@ feature 'Creating New Exercises' do
     LoginPage.new.sign_in(@user.email, @user.password)
   end
 
-  scenario 'User creates a new Exercises' do
+  scenario 'User creates a new Exercise' do
     visit new_exercise_path
     fill_in 'exercise_name', with: 'My New Exercise'
     click_button 'Submit'
@@ -27,12 +27,15 @@ feature 'Creating New Exercises' do
 
   scenario 'User creates a new Exercise and assigns it to a workout' do 
     workout = @user.workouts.create(name: "My New Workout")
+    @user.exercises.create(name: "Bicep Curls")
+    @user.exercises.create(name: "Tricep Curls")
     visit new_exercise_path 
     fill_in 'exercise_name', with: 'My Second Exercise'
-    find('#workout_id').find(:option, workout.name).select_option
+    check "My New Workout"
     click_button 'Submit'
-
+    
     visit workout_path(workout)
     expect(page).to have_text('My Second Exercise') 
+    expect(Exercise.last.workouts).to include(workout)
   end
 end
